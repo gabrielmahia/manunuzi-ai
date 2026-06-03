@@ -1,0 +1,12 @@
+import streamlit as st
+st.set_page_config(page_title="Manunuzi AI", page_icon="📋", layout="centered")
+st.markdown("# 📋 Manunuzi AI")
+st.markdown("**Kenya Government Procurement Transparency**")
+st.info("🚧 **Inaendelea kuundwa** — Hii ni toleo la awali. Vipengele vya kwanza vitakuja hivi karibuni.")
+st.markdown("### Vipengele vinavyokuja:")
+    st.caption("- Tafuta zabuni za serikali (contract search)")
+    st.caption("- Angalia muuzaji wa kawaida")
+    st.caption("- Gundua anomalies za manunuzi")
+    st.caption("- Ripoti ya thamani ya pesa")
+st.markdown("---")
+st.caption("⭐ Star repo hii ili kufuatilia maendeleo | gabrielmahia.ai")
