@@ -4,7 +4,7 @@
 
 Kenya spends KES 600B+ annually on government contracts. The Public Procurement and Asset Disposal Act requires transparency, but procurement data remains inaccessible to ordinary citizens. Manunuzi AI makes PPO contract data searchable, summarizes supplier patterns, and flags anomalies that correlate with procurement corruption.
 
-[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY-NC-ND%204.0-lightgrey.svg)]()
+[![License: MIT License](https://img.shields.io/badge/License-CC%20BY-NC-ND%204.0-lightgrey.svg)]()
 
 ## The Problem
 
