@@ -10,10 +10,9 @@ Kenya spends KES 600B+ annually on government contracts. The Public Procurement 
 
 Kenya spends KES 600B+ annually on government contracts. The Public Procurement and Asset Disposal Act requires transparency, but procurement data remains inaccessible to ordinary citizens. Manunuzi AI makes PPO contract data searchable, summarizes supplier patterns, and flags anomalies that correlate with procurement corruption.
 
-## First-Mover Positioning
+## East Africa Context
 
-Parallel to: USASpending.gov, OpenContracting.org, Transparency International procurement tools
-First implementation for East Africa / Swahili context.
+Built for the East African and Swahili-language context — the APIs, regulations, and institutional data this tool connects to are region-specific.
 
 ## Features (Roadmap)
 
