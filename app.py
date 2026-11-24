@@ -1,5 +1,5 @@
 import streamlit as st
-import urllib.request, json, random
+import html, os, urllib.request, json, random
 
 st.set_page_config(page_title="Manunuzi AI — Uwazi wa Zabuni", page_icon="📋", layout="wide")
 st.markdown("""<style>
@@ -10,8 +10,16 @@ st.markdown("""<style>
 .stButton>button{background:#1f6feb;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-weight:700}
 </style>""", unsafe_allow_html=True)
 
-API_KEY = st.secrets.get("GOOGLE_API_KEY") or st.secrets.get("GEMINI_API_KEY","")
+def _secret(name):
+    """Read a Streamlit secret, falling back to the environment; never crash when no secrets file exists."""
+    try:
+        v = st.secrets.get(name)
+    except Exception:
+        v = None
+    return v or os.environ.get(name, "")
 
+API_KEY = _secret("GOOGLE_API_KEY") or _secret("GEMINI_API_KEY")
+MODEL = _secret("GEMINI_MODEL") or "gemini-3.5-flash-lite"  # the 1.5 Flash model this app used was retired by Google
 # DEMO synthetic procurement data (source: DEMO — synthetic, not real PPO data)
 random.seed(42)
 DEMO_CONTRACTS = [
@@ -34,15 +42,15 @@ FLAG_LABELS = {
 
 def ask_ai(q):
     if not API_KEY: return "❌ API key not configured."
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent"
     body = {"contents":[{"role":"user","parts":[{"text":q}]}],
             "systemInstruction":{"parts":[{"text":"Wewe ni mchambuzi wa zabuni za serikali Kenya. Eleza ukweli kwa Kiswahili na Kiingereza. Toa uchambuzi wa hatari za ufisadi bila kuchukua upande wowote wa kisiasa."}]},
             "generationConfig":{"temperature":0.2,"maxOutputTokens":600}}
     try:
-        req = urllib.request.Request(url,data=json.dumps(body).encode(),headers={"Content-Type":"application/json"},method="POST")
+        req = urllib.request.Request(url,data=json.dumps(body).encode(),headers={"Content-Type":"application/json","x-goog-api-key":API_KEY},method="POST")
         with urllib.request.urlopen(req,timeout=30) as r:
-            return json.loads(r.read())["candidates"][0]["content"]["parts"][0]["text"]
-    except Exception as e: return f"❌ {e}"
+            return html.escape(json.loads(r.read())["candidates"][0]["content"]["parts"][0]["text"])
+    except Exception as e: return html.escape(f"❌ {e}")
 
 st.markdown("# 📋 Manunuzi AI")
 st.markdown("**Uwazi wa Zabuni za Serikali Kenya | Government Procurement Transparency**")
