@@ -103,4 +103,4 @@ with tab3:
         st.markdown(f'<div class="m-card">{result.replace(chr(10),"<br>")}</div>', unsafe_allow_html=True)
 
 st.markdown("---")
-st.caption("📋 Manunuzi AI v1.0 | Data: DEMO synthetic | PPO Kenya: ppo.go.ke | CC BY-NC-ND 4.0")
+st.caption("📋 Manunuzi AI v1.0 | Data: DEMO synthetic | PPO Kenya: ppo.go.ke | MIT")
